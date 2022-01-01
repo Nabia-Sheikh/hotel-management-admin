@@ -4,7 +4,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import Navbar from "./Components/Navbar";
 import Rooms from "./Components/Rooms";
-import { child, get, onValue, ref } from "firebase/database";
+import {  onValue, ref } from "firebase/database";
 import { db } from "./firebase";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -13,23 +13,16 @@ import AddRooms from "./Components/AddRooms";
 import UpdateRoom from "./Components/updateRoom";
 import Users from "./Components/Users";
 import Bookings from "./Components/Bookings";
+import { UserAuthContextProvider } from "./contexts/UserAuthContext";
+import ProtectedRoute from "./Components/ProtectedRoute";
+import Login from "./Components/Login";
 
 function App() {
   const dispatch = useDispatch();
   const getFromFirebase = () => {
     const dbRef = ref(db);
 
-    // get(dbRef).then((data) => {
-    //   if (data.exists()) {
-    //     const outData = data.val();
-    //     dispatch({
-    //       type: "FIREBASE",
-    //       payload: {
-    //         outData,
-    //       },
-    //     });
-    //   }
-    // });
+
     onValue(dbRef, (snapshot) => {
       const outData = snapshot.val();
       dispatch({
@@ -48,16 +41,19 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar />
+    <UserAuthContextProvider>
+    <Navbar />
       <Routes>
-        <Route index path="/" element={<Rooms />} />
-        <Route path="/addRoom" element={<AddRooms />} />
-        <Route path="/users" element={<Users />} />
-        <Route path="/bookings" element={<Bookings />} />
-        <Route path="/update-room/" element={<UpdateRoom />} />
-        <Route path="/update-room/:slug" element={<UpdateRoom />} />
-        <Route path="/rooms/:slug" element={<SingleRooms />} />
+        <Route index path="/rooms" element={<ProtectedRoute><Rooms /></ProtectedRoute> } />
+        <Route path="/addRoom" element={<ProtectedRoute><AddRooms /></ProtectedRoute>} />
+        <Route path="/users" element={<ProtectedRoute><Users /></ProtectedRoute>} />
+        <Route path="/bookings" element={<ProtectedRoute><Bookings /></ProtectedRoute>} />
+        <Route path="/update-room/" element={<ProtectedRoute><UpdateRoom /></ProtectedRoute>} />
+        <Route path="/update-room/:slug" element={<ProtectedRoute><UpdateRoom /></ProtectedRoute>} />
+        <Route path="/rooms/:slug" element={<ProtectedRoute><SingleRooms /></ProtectedRoute>} />
+        <Route path="/login" element={<Login />} />
       </Routes>
+    </UserAuthContextProvider>
     </BrowserRouter>
   );
 }

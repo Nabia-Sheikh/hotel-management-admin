@@ -1,22 +1,25 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaAlignRight } from "react-icons/fa";
-// import { useUserAuth } from "../contexts/UserAuthContext";
+import { useUserAuth } from "../contexts/UserAuthContext";
 
 const Navbar = () => {
-//   const { user, logOut } = useUserAuth();
+  const { user , logOut } = useUserAuth();
   const navigate = useNavigate();
 
-//   async function handleLogout() {
-//     try {
-//       await logOut();
-//       navigate("/signin");
-//     } catch {
-//       console.log("can't logut");
-//     }
-//   }
+  async function handleLogout() {
+    try {
+      await logOut();
+      navigate("/login");
+    } catch {
+      console.log("can't logut");
+    }
+  }
   return (
     <>
+    {
+      user?
+      <>
       <nav className="navbar navbar-expand-sm navbar-dark bg-transparent py-2 fixed-top scrolled">
         <div className="container-fluid ">
           <span
@@ -46,7 +49,7 @@ const Navbar = () => {
                   className="nav-link"
                   //   activeClassName="active_class"
                   exact="true"
-                  to="/"
+                  to="/rooms"
                 >
                   Rooms
                 </NavLink>
@@ -96,12 +99,12 @@ const Navbar = () => {
                   className="nav-link"
                   //   activeClassName="active_class"
                   exact="true"
-                  to="/signin"
+                  to="/login"
                 >
                   <button
                     type="button"
                     className="btn btn-outline-danger"
-                    // onClick={handleLogout}
+                    onClick={handleLogout}
                   >
                     Log Out
                   </button>
@@ -111,6 +114,24 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+      </>
+      :
+      <>
+      <nav className="navbar navbar-expand-sm navbar-dark bg-transparent py-2 fixed-top scrolled justify-content-center">
+        <div className="container-fluid " style = {{display : "flex" , justifyContent : "center"}} >
+          <span
+            className="navbar-brand font-weight-bolder"
+            style={{ cursor: "pointer" }}
+          >
+            Hotel Admin.
+          </span>
+          
+        
+        </div>
+      </nav>
+      </>
+    }
+      
     </>
   );
 };

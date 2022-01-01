@@ -26,6 +26,7 @@ const UpdateRoom = () => {
   const [image4, setImage4] = useState("");
 
   function getRoom(arg) {
+    
     const idiRooms = state[0][0].rooms.map((item) => item);
     const roomDatas = idiRooms.filter((roomItem) => roomItem.slug === arg);
     return roomDatas;
@@ -147,7 +148,7 @@ const UpdateRoom = () => {
         setImage3("");
         setImage4("");
 
-        navigate(`/`);
+        navigate(`/rooms`);
       });
     } else {
       return alert("Please fill all required fields.");
@@ -329,7 +330,7 @@ const UpdateRoom = () => {
                 <div className="card shadow-lg border-0 p-4 error">
                   <h1 className="text-center display-4">Update</h1>
                   <h3>Please select room from Room page..</h3>
-                  <Link to="/" className="btn btn-warning mt-4 ">
+                  <Link to="/rooms" className="btn btn-warning mt-4 ">
                     Back to Rooms
                   </Link>
                 </div>

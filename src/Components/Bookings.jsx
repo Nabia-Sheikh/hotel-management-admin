@@ -1,5 +1,5 @@
-import { onValue, ref, remove, update } from "firebase/database";
-import React, { useEffect, useState } from "react";
+import { onValue, ref, update } from "firebase/database";
+import React, { useState } from "react";
 import Table from "react-bootstrap/Table";
 import { db } from "../firebase";
 import { Link } from "react-router-dom";
@@ -14,8 +14,6 @@ const StatusTD = styled.td`
 `;
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
-  const [status, setStatus] = useState("");
-  //   const state = useSelector((state) => state);
 
   React.useEffect(() => {
     onValue(ref(db, "/bookings/"), (snapshot) => {
@@ -31,12 +29,9 @@ const Bookings = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  //   const deleteBooking = (dlt) => {
-  //     remove(ref(db, `/bookings/${dlt.id}`));
-  //   };
+  
 
   const updateBooking = (bookingNumb, status) => {
-    //   booking/7d9d08afdb6
     update(ref(db, `bookings/${bookingNumb}`), {
       status,
     });
@@ -116,9 +111,8 @@ const Bookings = () => {
             <div className="col-md-6 col-12 mx-auto">
               <div className="card shadow-lg border-0 p-4 error">
                 <h1 className="text-center display-4">No bookings.</h1>
-                <h3>Click below to start Booking!.</h3>
                 <Link to="/rooms" className="btn btn-warning mt-4 ">
-                  Start Booking.
+                  No Bookings
                 </Link>
               </div>
             </div>

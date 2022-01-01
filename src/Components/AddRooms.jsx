@@ -49,7 +49,7 @@ const AddRooms = () => {
           pets,
           breakfast,
           featured: false,
-          description: description,
+          description,
           extras: extras.split(","),
           images: [
             {
@@ -98,7 +98,7 @@ const AddRooms = () => {
         setImage3("");
         setImage4("");
 
-        navigate("/");
+        navigate("/rooms");
       });
     } else {
       return alert("Please fill all required fields.");
@@ -173,7 +173,7 @@ const AddRooms = () => {
                       <input
                         type="checkbox"
                         className="custom-control-input"
-                        value={breakfast}
+                        checked={breakfast}
                         onChange={() => setbreakfast(!breakfast)}
                         name="breakfast"
                         id="breakfast"
@@ -190,7 +190,7 @@ const AddRooms = () => {
                         type="checkbox"
                         className="custom-control-input"
                         name="pets"
-                        value={pets}
+                        checked={pets}
                         onChange={() => setpets(!pets)}
                         id="pets"
                       />

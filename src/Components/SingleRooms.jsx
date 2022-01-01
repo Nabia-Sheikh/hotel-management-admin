@@ -36,7 +36,7 @@ const SingleRooms = () => {
   const deleteRoom = () => {
     remove(ref(db, `/hotels/${id}`)).then(() => {
       alert("Room deleted Succesfully!");
-      navigate("/");
+      navigate("/rooms");
     });
   };
 

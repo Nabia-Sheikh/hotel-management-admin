@@ -40,10 +40,9 @@ export const reducer = (state = initialState, { type, payload }) => {
           minSize: 0,
         },
       ];
-      const bookings = payload.outData.bookings;
       const users = payload.outData.users;
 
-      return [roomsData, bookings, users];
+      return [roomsData, users];
 
     default:
       return state;

@@ -3,7 +3,7 @@ import Room from "./Room";
 import notFound from "../images/notfound.svg";
 
 export default function RoomsList(props) {
-  const { rooms: data } = props;
+  const { rooms : data } = props;
   return (
     <>
       {!data ? (
