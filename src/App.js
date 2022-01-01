@@ -51,7 +51,7 @@ function App() {
         <Route path="/update-room/" element={<ProtectedRoute><UpdateRoom /></ProtectedRoute>} />
         <Route path="/update-room/:slug" element={<ProtectedRoute><UpdateRoom /></ProtectedRoute>} />
         <Route path="/rooms/:slug" element={<ProtectedRoute><SingleRooms /></ProtectedRoute>} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
       </Routes>
     </UserAuthContextProvider>
     </BrowserRouter>
