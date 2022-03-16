@@ -7,6 +7,9 @@ This project is part of the Course of Web & Hybrid development which is taken at
 
 https://hotel-admin-by-nabia.netlify.app/
 
+## Email : admin@gmail.com
+## Password : adminadmin
+
 ## Demo of Site
 
 https://hotel-management-by-nabia.netlify.app/
